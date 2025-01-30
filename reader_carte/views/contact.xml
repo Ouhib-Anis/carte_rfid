@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Informations de passagé">
+                        <group>
+                           <group string="Détails du passager">
+                           <field name="numero_carte_accee"/>
+                            <field name="numero_billet"/>
+                            <field name="numero_dossier"/>
+                            </group>
+                            <group string="Détails de la traversée">
+                            <field name="navire"/>
+                            <field name="traversee"/>
+                            <field name="date_traversee"/>
+                           <field name="heure_enregistrement" widget="datetime"/>
+                             <field name="ordre"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+       <record id="view_partner_tree_inherit" model="ir.ui.view">
+            <field name="name">res.partner.tree.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="inside">
+                    <field name="display_name" string="Name" invisible="1"/>
+                    <field name="complete_name" string="Name"/>
+                    <field name="function" column_invisible="True"/>
+                    <field name="phone" class="o_force_ltr" optional="show"/>
+                    <field name="mobile" optional="hide"/>
+                    <field name="email" optional="show"/>
+                    <field name="user_id" optional="show" widget="many2one_avatar_user" domain="[('share', '=', False)]"/>
+                    <field name="city" optional="show"/>
+                    <field name="state_id" optional="hide" readonly="1"/>
+                    <field name="country_id" optional="show" readonly="1"/>
+                    <field name="vat" optional="hide" readonly="1"/>
+                    <field name="category_id" optional="hide" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                    <field name="is_company" column_invisible="True"/>
+                    <field name="parent_id" readonly="1" column_invisible="True"/>
+                    <field name="active" column_invisible="True"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

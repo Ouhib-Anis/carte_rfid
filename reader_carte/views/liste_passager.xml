@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <record model="ir.ui.view" id="view_partner_form_custom">
+    <field name="name">view.partner.form.custom</field>
+    <field name="model">res.partner</field>
+    <field name="arch" type="xml">
+        <form>
+
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="numero_carte_accee"/>
+                    <field name="numero_billet"/>
+                    <field name="numero_dossier"/>
+                </group>
+                <group>
+                    <field name="navire"/>
+                    <field name="traversee"/>
+                    <field name="date_traversee"/>
+                    <field name="heure_enregistrement"/>
+                    <field name="ordre"/>
+                </group>
+
+            </sheet>
+        </form>
+    </field>
+</record>
+
+    <record model="ir.ui.view" id="view_partner_tree_custom">
+        <field name="name">view.partner.tree.custom</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+           <tree >
+
+                 <field name="name"/>
+                 <field name="numero_carte_accee"/>
+                <field name="numero_billet"/>
+                <field name="numero_dossier"/>
+                <field name="navire"/>
+                <field name="traversee"/>
+                <field name="date_traversee"/>
+                <field name="heure_enregistrement"/>
+                <field name="ordre"/>
+                 <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="custom_partner_action">
+        <field name="name">liste des pasager</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+         <field name="domain">[('numero_carte_accee', '!=', 0)]</field>
+          <field name="view_ids" eval="[(5, 0, 0),
+                                  (0, 0, {'view_mode': 'tree', 'view_id': ref('view_partner_tree_custom')}),
+                                  (0, 0, {'view_mode': 'form', 'view_id': ref('view_partner_form_custom')})]"/>
+    </record>
+
+
+    <menuitem id="custom_partner_menu" name="liste des passages" action="custom_partner_action" parent="menu_partner_rfid" sequence="2"/>
+</odoo>
+
+

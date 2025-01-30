@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">altex.rfid.form</field>
+        <field name="model">altex.rfid</field>
+        <field name="arch" type="xml">
+            <form string="Partners with RFID" class="rfid-background">
+                <group class="rfid-form">
+                    <field name="rfid_id"/>
+                    <field name="qr_name"/>
+                     <field name="montant"/>
+                     <field name="create_date" invisible="1"/>
+                </group>
+
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_partner_tree_rfid" model="ir.ui.view">
+        <field name="name">altex.rfid.tree</field>
+        <field name="model">altex.rfid</field>
+        <field name="arch" type="xml">
+            <tree string="Partners with RFID" class="rfid-list">
+                <field name="partner_name"/>
+                <field name="rfid_id" widget="integer"/>
+                <field name="qr_name" optional="show"/>
+                 <field name="montant"/>
+                  <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="action_partner_rfid" model="ir.actions.act_window">
+        <field name="name">RFID</field>
+        <field name="res_model">altex.rfid</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_create">
+                Cliquez sur "Créer" pour ajouter une nouvelle importation.
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_partner_rfid" name=" lecteur RFID"/>
+
+
+    <menuitem id="menu_partner" name="RFID" parent="menu_partner_rfid" action="action_partner_rfid"  sequence="1" />
+</odoo>

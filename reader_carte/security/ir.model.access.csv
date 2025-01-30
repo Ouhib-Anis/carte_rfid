@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rfid_user,carte,model_altex_rfid,base.group_user,1,1,1,1
+access_altex_rfid_historique_user,access_altex_rfid_historique_user,model_altex_rfid_historique,,1,1,1,1

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_tree_altex_rfid_historique" model="ir.ui.view">
+        <field name="name">altex.rfid.historique.tree</field>
+        <field name="model">altex.rfid.historique</field>
+        <field name="arch" type="xml">
+            <tree string="Historique des montants ajoutés">
+                 <field name="rfid_id"/>
+                <field name="montant_ajoute"/>
+                <field name="date_ajout"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_form_altex_rfid_historique" model="ir.ui.view">
+        <field name="name">altex.rfid.historique.form</field>
+        <field name="model">altex.rfid.historique</field>
+        <field name="arch" type="xml">
+            <form string="Historique des montants ajoutés">
+                <sheet>
+                    <group>
+                        <field name="rfid_id"/>
+                        <field name="montant_ajoute"/>
+                        <field name="date_ajout"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="rfid_historique" model="ir.actions.act_window">
+        <field name="name">Historique des Montants</field>
+        <field name="res_model">altex.rfid.historique</field>
+        <field name="view_mode">tree,form</field>
+         <field name="view_ids" eval="[(5, 0, 0),
+                                  (0, 0, {'view_mode': 'tree', 'view_id': ref('view_tree_altex_rfid_historique')}),
+                                  (0, 0, {'view_mode': 'form', 'view_id': ref('view_form_altex_rfid_historique')})]"/>
+    </record>
+
+    <menuitem id="rfid_historique_menu" name="Rechargé" action="rfid_historique" parent="menu_partner_rfid" sequence="3"/>
+</odoo>
